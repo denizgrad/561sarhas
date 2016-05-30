@@ -1,0 +1,110 @@
+.grey .ui-grid-cell-contents {
+	background-color: red;
+}
+
+body {
+	font-family: helvetica;
+	background-image: url("../images/background.png");
+}
+
+.siparis-block {
+	display: block;
+	margin-left: 3%;
+	margin-right: 3%;
+}
+
+div.logo {
+	background-image: url("../images/logo.png");
+	height: 150px;
+}
+
+.tableDiv {
+	margin-bottom: 7%;
+}
+
+.btn-sipDetay {
+	height: 30px;
+	/* 	background-color: #e55a01; */
+	/*     border-color: #e55a01; */
+	margin-right: 2px;
+	margin-left: 2px;
+}
+
+.btn-sipUpdate {
+	height: 30px;
+	/* 	background-color: #e55a01; */
+	/*     border-color: #e55a01; */
+	margin-right: 2px;
+	margin-left: 2px;
+}
+
+.btn-sipBarcode {
+	height: 30px;
+	/* 	background-color: #e55a01; */
+	/*     border-color: #e55a01; */
+	margin-right: 2px;
+	margin-left: 2px;
+}
+.ui-grid-cell-contents.ng-binding.ng-scope  {
+	height: 29px;
+}
+
+.siparisList {
+	color: #2e1e1f;
+}
+
+.ui-grid-header-cell {
+	background-color: #f3c149;
+	border-color: #2e1e1f;
+}
+
+.ui-grid-menu-button .ui-grid-menu .ui-grid-menu-mid {
+	/*     overflow: hidden; */
+	border: 1px solid #d4d4d4;
+}
+
+.ui-grid-menu-button {
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: #f3c149;
+	border-left-color: #2e1e1f;
+	cursor: pointer;
+	height: 31px;
+	font-weight: normal;
+}
+.sendButton, .sendButton:focus, .sendButton:hover, .sendButton[disabled]:hover{
+	background-color: #e55a01;
+    border-color: #e55a01;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+.loading-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	background-color: rgba(0, 0, 0, 0.5); /*dim the background*/
+}
+.loading-inner-container {
+    z-index: 99999;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
