@@ -4,7 +4,7 @@
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 
 
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.*" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
@@ -38,6 +38,9 @@
     User user = userService.getCurrentUser();
     if (user != null) {
         pageContext.setAttribute("user", user);
+    }else {
+    	System.out.println(request.getContextPath()+"login.jsp");
+    	response.sendRedirect(request.getContextPath()+"login.jsp");
     }
 %>
 	<nav class="navbar navbar-inverse navbar-fixed-top">

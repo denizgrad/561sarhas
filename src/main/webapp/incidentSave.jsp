@@ -7,7 +7,7 @@
 <%-- //[START imports]--%>
 <%-- //[END imports]--%>
 
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.*" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
@@ -53,6 +53,9 @@
     User user = userService.getCurrentUser();
     if (user != null) {
         pageContext.setAttribute("user", user);
+    } else {
+    	System.out.println(request.getContextPath()+"login.jsp");
+    	response.sendRedirect(request.getContextPath()+"login.jsp");
     }
 %>
 
@@ -71,8 +74,8 @@
 				aria-expanded="true">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="/incidentSave.jsp">Incidents</a></li>
-					<li><a href="/healthCare.html">Health Care</a></li>
-					<li><a href="/humanresource.html">Human Resources</a></li>
+					<li><a href="/healthCare.jsp">Health Care</a></li>
+					<li><a href="/humanresource.jsp">Human Resources</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

@@ -114,6 +114,7 @@ public class IncidentEP {
 	@ApiMethod(name = "delete", httpMethod = ApiMethod.HttpMethod.POST, path = "delete")
 	public void deleteIncident(@Named("incidentOid") String incidentOid) {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		incidentOid = incidentOid.replaceAll("\"", "");
 		if (StringUtils.isEmpty(incidentOid)) {
 			return;
 		}

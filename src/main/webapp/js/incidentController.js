@@ -126,10 +126,10 @@ sipApp.controller("incidentCtrl", function($scope, $http) {
 			method : 'POST',
 			url : '/_ah/api/incident/v1/delete',
 			data : {
-				oidIncident : row.entity.key.id
+				incidentOid : JSON.stringify(row.entity.key.id)
 			}
 		}).then(function(resp) {
-			$scope.listAll();
+//			$scope.listAll();
 			alert("Done");
 		}, function() {
 			alert("An error occured during post request");
