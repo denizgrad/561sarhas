@@ -60,6 +60,7 @@
 					<li><a href="/incidentSave.jsp">Incidents</a></li>
 					<li class="active"><a href="/healthCare.jsp">Health Care</a></li>
 					<li><a href="/humanresource.jsp">Human Resources</a></li>
+					<li><a style="font-style: italic;"href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
