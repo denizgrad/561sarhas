@@ -20,7 +20,10 @@ import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 
 @Api(name = "incident", version = "v1")
 public class IncidentEP {
@@ -107,6 +110,16 @@ public class IncidentEP {
 		ds.put(entIncident);
 		return entIncident;
 	}
+	
+	@ApiMethod(name = "delete", httpMethod = ApiMethod.HttpMethod.POST, path = "delete")
+	public void deleteIncident(@Named("incidentOid") String incidentOid) {
+		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		if (StringUtils.isEmpty(incidentOid)) {
+			return;
+		}
+		Key key = KeyFactory.createKey("Incident", Long.valueOf(incidentOid));
+		ds.delete(key);
+	}
 	/**
 	 * 
 	 * @return
@@ -171,5 +184,128 @@ public class IncidentEP {
 		List<Entity> results = ds.prepare(q).asList(FetchOptions.Builder.withDefaults());
 		
 		return results;
+	}
+	
+	@ApiMethod(name = "listAllPersonel", httpMethod = ApiMethod.HttpMethod.GET, path = "listAllPersonel")
+	public List<Entity> listAllPersonel() {
+		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		
+		Query q = new Query("Personel");
+		List<Entity> results = ds.prepare(q).asList(FetchOptions.Builder.withDefaults());
+		
+		return results;
+		
+	}
+	@ApiMethod(name = "savePersonel", httpMethod = ApiMethod.HttpMethod.POST, path = "savePersonel")
+	public Entity savePersonel(@Named("jsonPersonel") String jsonPersonel) {
+		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		if (StringUtils.isEmpty(jsonPersonel)) {
+			return null;
+		}
+		JSONObject jsonObj = null;
+		Entity entPersonel = new Entity("Personel");
+		
+		try {
+			jsonObj = new JSONObject(jsonPersonel);
+			//String personelStr = (String) jsonObj.get("jsonPersonel");
+			//personelStr = StringEscapeUtils.unescapeJava(personelStr);
+			//JSONObject personel = new JSONObject(personelStr);
+			
+			if(((String)(jsonObj.get("isNew"))).equals("true"))
+			{
+				entPersonel.setProperty("name", jsonObj.get("name"));
+				entPersonel.setProperty("surname", jsonObj.get("surname"));
+				entPersonel.setProperty("idNumber", jsonObj.get("idNumber"));
+				entPersonel.setProperty("birthDate", jsonObj.get("birthDate"));
+				entPersonel.setProperty("homeNumber", jsonObj.get("homeNumber"));
+				entPersonel.setProperty("mobileNumber", jsonObj.get("mobileNumber"));
+				entPersonel.setProperty("emergency1Number", jsonObj.get("emergency1Number"));
+				entPersonel.setProperty("emergency2Number", jsonObj.get("emergency2Number"));
+				entPersonel.setProperty("emailPersonel", jsonObj.get("emailPersonel"));
+				entPersonel.setProperty("emailOrganization", jsonObj.get("emailOrganization"));
+				entPersonel.setProperty("personalInsurance", jsonObj.get("personalInsurance"));
+				entPersonel.setProperty("passportInformation", jsonObj.get("passportInformation"));
+				entPersonel.setProperty("personalInformation", jsonObj.get("personalInformation"));
+				entPersonel.setProperty("foreignLanguage", jsonObj.get("foreignLanguage"));
+				ds.put(entPersonel);
+			}
+			else
+			{
+				Query q = new Query("Personel").setFilter(new FilterPredicate("name", FilterOperator.EQUAL, (String)jsonObj.get("name")));
+				PreparedQuery pq = ds.prepare(q);
+			    Entity result = pq.asSingleEntity();
+			    
+			    result.setProperty("name", jsonObj.get("name"));
+			    result.setProperty("surname", jsonObj.get("surname"));
+			    result.setProperty("idNumber", jsonObj.get("idNumber"));
+			    result.setProperty("birthDate", jsonObj.get("birthDate"));
+			    result.setProperty("homeNumber", jsonObj.get("homeNumber"));
+			    result.setProperty("mobileNumber", jsonObj.get("mobileNumber"));
+			    result.setProperty("emergency1Number", jsonObj.get("emergency1Number"));
+			    result.setProperty("emergency2Number", jsonObj.get("emergency2Number"));
+			    result.setProperty("emailPersonel", jsonObj.get("emailPersonel"));
+			    result.setProperty("emailOrganization", jsonObj.get("emailOrganization"));
+			    result.setProperty("personalInsurance", jsonObj.get("personalInsurance"));
+			    result.setProperty("passportInformation", jsonObj.get("passportInformation"));
+			    result.setProperty("personalInformation", jsonObj.get("personalInformation"));
+			    result.setProperty("foreignLanguage", jsonObj.get("foreignLanguage"));
+			    
+			    ds.put(result);
+			}
+			
+				
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return entPersonel;
+	}
+	
+	@ApiMethod(name = "savePersonelHcInfo", httpMethod = ApiMethod.HttpMethod.POST, path = "savePersonelHcInfo")
+	public Entity savePersonelHcInfo(@Named("personelHcInfo") String jsonPersonelHcInfo) {
+		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		if (StringUtils.isEmpty(jsonPersonelHcInfo)) {
+			return null;
+		}
+		JSONObject jsonObj = null;
+		Entity entPersonel = new Entity("Personel");
+		
+		try {
+			jsonObj = new JSONObject(jsonPersonelHcInfo);
+			//String personelStr = (String) jsonObj.get("jsonPersonel");
+			//personelStr = StringEscapeUtils.unescapeJava(personelStr);
+			//JSONObject personel = new JSONObject(personelStr);
+			
+			Query q = new Query("Personel").setFilter(new FilterPredicate("name", FilterOperator.EQUAL, (String)jsonObj.get("name")));
+			PreparedQuery pq = ds.prepare(q);
+		    Entity result = pq.asSingleEntity();
+		    
+		    result.setProperty("bloodtype", jsonObj.get("bloodtype"));
+		    result.setProperty("antihavigg", jsonObj.get("antihavigg"));
+		    result.setProperty("antihbs", jsonObj.get("antihbs"));
+		    result.setProperty("antihcv", jsonObj.get("antihcv"));
+		    result.setProperty("antihiv", jsonObj.get("antihiv"));
+		    result.setProperty("hbs", jsonObj.get("hbs"));
+		    result.setProperty("docsInterpreps", jsonObj.get("docsInterpreps"));
+		    
+		    ds.put(result);				
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return entPersonel;
+	}
+	
+	@ApiMethod(name = "deletePersonel", httpMethod = ApiMethod.HttpMethod.POST, path = "deletePersonel")
+	public void deletePersonel(@Named("name") String name) {
+		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		
+		Query q = new Query("Personel").setFilter(new FilterPredicate("name", FilterOperator.EQUAL, name));
+		PreparedQuery pq = ds.prepare(q);
+	    Entity result = pq.asSingleEntity();
+	    
+	    ds.delete(result.getKey());
 	}
 }

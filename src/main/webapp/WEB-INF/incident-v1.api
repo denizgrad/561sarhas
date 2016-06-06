@@ -25,6 +25,48 @@
     "maxAge" : 0
   },
   "methods" : {
+    "incident.savePersonelHcInfo" : {
+      "path" : "savePersonelHcInfo",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.savePersonelHcInfo",
+      "request" : {
+        "parameters" : {
+          "personelHcInfo" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "incident.delete" : {
+      "path" : "delete",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.deleteIncident",
+      "request" : {
+        "parameters" : {
+          "incidentOid" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
     "incident.save" : {
       "path" : "save",
       "httpMethod" : "POST",
@@ -61,6 +103,21 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "incident.listAllPersonel" : {
+      "path" : "listAllPersonel",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.listAllPersonel",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "incident.listAll" : {
       "path" : "listAll",
       "httpMethod" : "GET",
@@ -74,6 +131,48 @@
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "incident.savePersonel" : {
+      "path" : "savePersonel",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.savePersonel",
+      "request" : {
+        "parameters" : {
+          "jsonPersonel" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "incident.deletePersonel" : {
+      "path" : "deletePersonel",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.deletePersonel",
+      "request" : {
+        "parameters" : {
+          "name" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
       }
     }
   },
@@ -95,11 +194,11 @@
           "kind" : {
             "type" : "string"
           },
-          "appId" : {
-            "type" : "string"
-          },
           "propertiesFrom" : {
             "$ref" : "Entity"
+          },
+          "appId" : {
+            "type" : "string"
           },
           "properties" : {
             "$ref" : "JsonMap"
@@ -126,11 +225,11 @@
           "parent" : {
             "$ref" : "Key"
           },
-          "namespace" : {
-            "type" : "string"
-          },
           "complete" : {
             "type" : "boolean"
+          },
+          "namespace" : {
+            "type" : "string"
           }
         }
       },
@@ -152,6 +251,13 @@
       }
     },
     "methods" : {
+      "org.metu.sarhas.enpoints.IncidentEP.savePersonelHcInfo" : {
+        "response" : {
+          "$ref" : "Entity"
+        }
+      },
+      "org.metu.sarhas.enpoints.IncidentEP.deleteIncident" : {
+      },
       "org.metu.sarhas.enpoints.IncidentEP.saveIncident" : {
         "response" : {
           "$ref" : "Entity"
@@ -162,10 +268,22 @@
           "$ref" : "EntityCollection"
         }
       },
+      "org.metu.sarhas.enpoints.IncidentEP.listAllPersonel" : {
+        "response" : {
+          "$ref" : "EntityCollection"
+        }
+      },
       "org.metu.sarhas.enpoints.IncidentEP.listIncident" : {
         "response" : {
           "$ref" : "EntityCollection"
         }
+      },
+      "org.metu.sarhas.enpoints.IncidentEP.savePersonel" : {
+        "response" : {
+          "$ref" : "Entity"
+        }
+      },
+      "org.metu.sarhas.enpoints.IncidentEP.deletePersonel" : {
       }
     }
   }
