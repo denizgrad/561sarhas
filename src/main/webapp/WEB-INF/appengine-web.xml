@@ -3,7 +3,6 @@
     <application>metu561sarhas</application>
     <version>3</version>
     <threadsafe>true</threadsafe>
-    <ssl-enabled>false</ssl-enabled>
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
