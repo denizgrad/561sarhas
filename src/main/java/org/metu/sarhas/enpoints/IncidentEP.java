@@ -74,7 +74,7 @@ public class IncidentEP {
 		return rel;
 	}
 
-	@ApiMethod(name = "save", httpMethod = ApiMethod.HttpMethod.POST, path = "save")
+	@ApiMethod(name = "save", httpMethod = ApiMethod.HttpMethod.GET, path = "save")
 	public Entity saveIncident(@Named("jsonIncident") String jsonIncident) {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		if (StringUtils.isEmpty(jsonIncident)) {
@@ -111,7 +111,7 @@ public class IncidentEP {
 		return entIncident;
 	}
 	
-	@ApiMethod(name = "delete", httpMethod = ApiMethod.HttpMethod.POST, path = "delete")
+	@ApiMethod(name = "delete", httpMethod = ApiMethod.HttpMethod.GET, path = "delete")
 	public void deleteIncident(@Named("incidentOid") String incidentOid) {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		incidentOid = incidentOid.replaceAll("\"", "");
@@ -197,7 +197,7 @@ public class IncidentEP {
 		return results;
 		
 	}
-	@ApiMethod(name = "savePersonel", httpMethod = ApiMethod.HttpMethod.POST, path = "savePersonel")
+	@ApiMethod(name = "savePersonel", httpMethod = ApiMethod.HttpMethod.GET, path = "savePersonel")
 	public Entity savePersonel(@Named("jsonPersonel") String jsonPersonel) {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		if (StringUtils.isEmpty(jsonPersonel)) {
@@ -263,7 +263,7 @@ public class IncidentEP {
 		return entPersonel;
 	}
 	
-	@ApiMethod(name = "savePersonelHcInfo", httpMethod = ApiMethod.HttpMethod.POST, path = "savePersonelHcInfo")
+	@ApiMethod(name = "savePersonelHcInfo", httpMethod = ApiMethod.HttpMethod.GET, path = "savePersonelHcInfo")
 	public Entity savePersonelHcInfo(@Named("personelHcInfo") String jsonPersonelHcInfo) {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		if (StringUtils.isEmpty(jsonPersonelHcInfo)) {
@@ -299,7 +299,7 @@ public class IncidentEP {
 		return entPersonel;
 	}
 	
-	@ApiMethod(name = "deletePersonel", httpMethod = ApiMethod.HttpMethod.POST, path = "deletePersonel")
+	@ApiMethod(name = "deletePersonel", httpMethod = ApiMethod.HttpMethod.GET, path = "deletePersonel")
 	public void deletePersonel(@Named("name") String name) {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		

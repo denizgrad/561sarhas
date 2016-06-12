@@ -25,57 +25,15 @@
     "maxAge" : 0
   },
   "methods" : {
-    "incident.savePersonelHcInfo" : {
-      "path" : "savePersonelHcInfo",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.savePersonelHcInfo",
-      "request" : {
-        "parameters" : {
-          "personelHcInfo" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "incident.listAllPersonel" : {
-      "path" : "listAllPersonel",
+    "incident.listAll" : {
+      "path" : "listAll",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.listAllPersonel",
+      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.listIncident",
       "request" : {
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "incident.savePersonel" : {
-      "path" : "savePersonel",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.savePersonel",
-      "request" : {
-        "parameters" : {
-          "jsonPersonel" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
         "body" : "empty"
       },
       "response" : {
@@ -99,7 +57,7 @@
     },
     "incident.delete" : {
       "path" : "delete",
-      "httpMethod" : "POST",
+      "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
@@ -118,14 +76,14 @@
         "body" : "empty"
       }
     },
-    "incident.listAll" : {
-      "path" : "listAll",
+    "incident.listAllPersonel" : {
+      "path" : "listAllPersonel",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.listIncident",
+      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.listAllPersonel",
       "request" : {
         "body" : "empty"
       },
@@ -135,7 +93,7 @@
     },
     "incident.save" : {
       "path" : "save",
-      "httpMethod" : "POST",
+      "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
@@ -154,9 +112,30 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "incident.savePersonel" : {
+      "path" : "savePersonel",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.savePersonel",
+      "request" : {
+        "parameters" : {
+          "jsonPersonel" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "incident.deletePersonel" : {
       "path" : "deletePersonel",
-      "httpMethod" : "POST",
+      "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
@@ -173,6 +152,27 @@
       },
       "response" : {
         "body" : "empty"
+      }
+    },
+    "incident.savePersonelHcInfo" : {
+      "path" : "savePersonelHcInfo",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "org.metu.sarhas.enpoints.IncidentEP.savePersonelHcInfo",
+      "request" : {
+        "parameters" : {
+          "personelHcInfo" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
       }
     }
   },
@@ -251,19 +251,9 @@
       }
     },
     "methods" : {
-      "org.metu.sarhas.enpoints.IncidentEP.savePersonelHcInfo" : {
-        "response" : {
-          "$ref" : "Entity"
-        }
-      },
-      "org.metu.sarhas.enpoints.IncidentEP.listAllPersonel" : {
+      "org.metu.sarhas.enpoints.IncidentEP.listIncident" : {
         "response" : {
           "$ref" : "EntityCollection"
-        }
-      },
-      "org.metu.sarhas.enpoints.IncidentEP.savePersonel" : {
-        "response" : {
-          "$ref" : "Entity"
         }
       },
       "org.metu.sarhas.enpoints.IncidentEP.getIncidents" : {
@@ -273,7 +263,7 @@
       },
       "org.metu.sarhas.enpoints.IncidentEP.deleteIncident" : {
       },
-      "org.metu.sarhas.enpoints.IncidentEP.listIncident" : {
+      "org.metu.sarhas.enpoints.IncidentEP.listAllPersonel" : {
         "response" : {
           "$ref" : "EntityCollection"
         }
@@ -283,7 +273,17 @@
           "$ref" : "Entity"
         }
       },
+      "org.metu.sarhas.enpoints.IncidentEP.savePersonel" : {
+        "response" : {
+          "$ref" : "Entity"
+        }
+      },
       "org.metu.sarhas.enpoints.IncidentEP.deletePersonel" : {
+      },
+      "org.metu.sarhas.enpoints.IncidentEP.savePersonelHcInfo" : {
+        "response" : {
+          "$ref" : "Entity"
+        }
       }
     }
   }

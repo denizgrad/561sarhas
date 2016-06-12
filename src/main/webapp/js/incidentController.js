@@ -1,7 +1,8 @@
 var sipApp = angular.module("incidentModule", [ 'ngMaterial', 'ui.grid']);
 
 sipApp.controller("incidentCtrl", function($scope, $http) {
-
+//var site = "";
+var site = "https://metu561sarhas.appspot.com";
 	$scope.urban = {};
 	$scope.animalRescue = {};
 	$scope.ground = {};
@@ -28,11 +29,14 @@ sipApp.controller("incidentCtrl", function($scope, $http) {
 			obj = $scope.ground;
 		}
 		$http({
-			method : 'POST',
-			url : '/_ah/api/incident/v1/save',
-			data : {
-				jsonIncident : JSON.stringify(obj)
-			}
+			method : 'GET',
+			url : site+'/_ah/api/incident/v1/save?jsonIncident='+JSON.stringify(obj),
+			dataType: "json",
+//			params : {
+//				jsonIncident : JSON.stringify(obj)
+//			},
+			headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+	    
 		}).then(function() {
 			$scope.listAll();
 			alert("Done");
@@ -45,7 +49,7 @@ sipApp.controller("incidentCtrl", function($scope, $http) {
 		var obj = {};
 		$http({
 			method : 'GET',
-			url : '/_ah/api/incident/v1/listAll',
+			url : site+'/_ah/api/incident/v1/listAll',
 		}).then(function(resp) {
 			$scope.gridOptions.data = resp.data.items;
 			alert("Done");
@@ -123,11 +127,11 @@ sipApp.controller("incidentCtrl", function($scope, $http) {
 		$scope.gridOptions.data.splice(index, 1); 
 		
 		$http({
-			method : 'POST',
-			url : '/_ah/api/incident/v1/delete',
-			data : {
-				incidentOid : JSON.stringify(row.entity.key.id)
-			}
+			method : 'GET',
+			url : site+'/_ah/api/incident/v1/delete?incidentOid='+JSON.stringify(row.entity.key.id),
+//			data : {
+//				incidentOid : JSON.stringify(row.entity.key.id)
+//			}
 		}).then(function(resp) {
 //			$scope.listAll();
 			alert("Done");
@@ -139,6 +143,7 @@ sipApp.controller("incidentCtrl", function($scope, $http) {
 		debugger;
 		if(row.entity.properties.type == 1){
 			$scope.type = "1";
+			$scope.animalRescue.title = row.entity.properties.title;
 			$scope.animalRescue.id = row.entity.key.id;
 			$scope.animalRescue.completed = row.entity.properties.completed;
 			$scope.animalRescue.where = row.entity.properties.where;

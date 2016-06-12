@@ -1,7 +1,8 @@
 var hrApp = angular.module("hcModule", [ 'ngMaterial', 'ui.grid']);
 
 hrApp.controller("hcCtrl", function($scope, $http, $window) {
-	
+//	var site = "";
+	var site = "https://metu561sarhas.appspot.com";
 	var selectedPersonel = {};
 	var me = this;
 	/*
@@ -46,7 +47,7 @@ hrApp.controller("hcCtrl", function($scope, $http, $window) {
 		var obj = {};
 		$http({
 			method : 'GET',
-			url : '/_ah/api/incident/v1/listAllPersonel',
+			url : site+'/_ah/api/incident/v1/listAllPersonel',
 		}).then(function(resp) {
 			
 			
@@ -74,11 +75,11 @@ hrApp.controller("hcCtrl", function($scope, $http, $window) {
 		
 		
 		$http({
-			method : 'POST',
-			url : '/_ah/api/incident/v1/savePersonelHcInfo',
-			data : {
-				personelHcInfo : JSON.stringify(personelHcInfo)
-			}
+			method : 'GET',
+			url : site+'/_ah/api/incident/v1/savePersonelHcInfo?personelHcInfo='+JSON.stringify(personelHcInfo),
+//			data : {
+//				personelHcInfo : JSON.stringify(personelHcInfo)
+//			}
 		}).then(function() {
 			$window.location.reload();
 			
